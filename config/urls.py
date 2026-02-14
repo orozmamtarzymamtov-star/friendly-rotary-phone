@@ -16,8 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from products.views import ProductViewSet
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',include('products.urls')),
 ]
+router = DefaultRouter()
+router.register(r'products', ProductViewSet)
+urlpatterns += router.urls
